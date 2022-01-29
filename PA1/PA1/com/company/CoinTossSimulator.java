@@ -51,8 +51,8 @@ public class CoinTossSimulator {
 
    for(int i=0; i<numTrials; i++){
      Random generator = new Random();
-     int coin1 = generator.nextInt(0,2);
-     int coin2 = generator.nextInt(0,2);
+     int coin1 = generator.nextInt(2);
+     int coin2 = generator.nextInt(2);
      if( (coin1 == 0) && (coin2 == 0)) { twoTailCount++; }
      else if (coin1 == 1 && coin2 == 1) { twoHeadCount++; }
      else { tailHeadCount++; }

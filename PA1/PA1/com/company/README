@@ -41,6 +41,23 @@ ANY OTHER NOTES FOR THE GRADER:
 ----------------------------------------------
 ANSWERS TO ASSIGNMENT README QUESTIONS (if applicable):
 
+Q1.
+We cannot copy any code from the web, if done so, it will be considered as plagiarism. The only outside code that we can use are the one that are given in the text book and the ones given by the course instructor. Other than this no outside code is allowed.
 
 
+Q2.
+Probability P(A)=number of favourable outcomes of A / total number of possible outcomes
+So total number of outcomes can be S=[HH,TT,HT,TH]
+P(HH)=1/4
+P(TT)=1/4
+P(TH,HT)=2/4=1/2.
+Since the probability of getting a head and a tail has 2 possible outcomes(HT or TH), the Probablility of this particular toss output will be 1/2.
 
+Q3.
+It takes around 600 trials on average to get the percentage values within +/-1% of the probability.
+After running a test simulation program, which calculates the difference between the actual percentage and the percentage outcome, I could finally conclude that around 500-600 trials, the output values were closer to the probability values.
+
+Q4.
+works well for an int value of 2147483647
+Crashes with an overflow  at a value of 2147483648 as number of trails.
+ERROR: java.util.InputMismatchException at java.util.scanner.nextInt

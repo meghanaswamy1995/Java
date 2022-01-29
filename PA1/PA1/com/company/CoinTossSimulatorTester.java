@@ -1,6 +1,9 @@
 package com.company;
-
+/**
+ CoinTossSimulatorTester, the tester code to test the CoinTossSimulator class.
+ */
 public class CoinTossSimulatorTester {
+
     public static void main(String[] args){
         int numTrials;
         int twoHeads;
@@ -17,7 +20,7 @@ public class CoinTossSimulatorTester {
             twoHeads = toss.getTwoHeads();
             twoTails = toss.getTwoTails();
             tailhead = toss.getHeadTails();
-            //printTestOutput(numTrials,twoHeads,twoTails,tailhead,0);
+            printTestOutput(numTrials,twoHeads,twoTails,tailhead,0);
 
          toss.run(1);
             System.out.println("\nAfter run(1): \n");
@@ -25,7 +28,7 @@ public class CoinTossSimulatorTester {
             twoHeads = toss.getTwoHeads();
             twoTails = toss.getTwoTails();
             tailhead = toss.getHeadTails();
-            //printTestOutput(numTrials,twoHeads,twoTails,tailhead,1);
+            printTestOutput(numTrials,twoHeads,twoTails,tailhead,1);
 
         toss.run(10);
             System.out.println("After run(10): ");
@@ -33,7 +36,7 @@ public class CoinTossSimulatorTester {
             twoHeads = toss.getTwoHeads();
             twoTails = toss.getTwoTails();
             tailhead = toss.getHeadTails();
-            //printTestOutput(numTrials,twoHeads,twoTails,tailhead,11);
+            printTestOutput(numTrials,twoHeads,twoTails,tailhead,11);
 
 
         toss.run(100);
@@ -43,7 +46,7 @@ public class CoinTossSimulatorTester {
             twoTails = toss.getTwoTails();
             tailhead = toss.getHeadTails();
             twoHeadPercent = toss.getTwoHeadsPercent();
-            printTestOutput(numTrials,twoHeads,twoTails,tailhead,111, twoHeadPercent);
+            printTestOutput(numTrials,twoHeads,twoTails,tailhead,111);
 
         toss.reset();
             System.out.println("\nAfter Reset\n");
@@ -51,19 +54,25 @@ public class CoinTossSimulatorTester {
             twoHeads = toss.getTwoHeads();
             twoTails = toss.getTwoTails();
             tailhead = toss.getHeadTails();
-           // printTestOutput(numTrials,twoHeads,twoTails,tailhead,0);
+            printTestOutput(numTrials,twoHeads,twoTails,tailhead,0);
 
     }
-
-    public static void printTestOutput(int numoftrials, int twoHead, int twoTail, int headtail, int exp_val, int twoHeadPercent){
+    /**
+     PrintTestOutput function to just print out all the statements from tester code.
+     Also checks if each individual output counts match with the total number of trials.
+     @param numoftrials  number of trails given as input.
+     @param twoHead count of tosses which came up as two heads
+     @param twoTail count of tosses which came up as two tails
+     @param headtail count of tosses which came up as a head and a tail
+     @param exp_val expected value
+     */
+    public static void printTestOutput(int numoftrials, int twoHead, int twoTail, int headtail, int exp_val){
         int numTrials;
         int twoHeads;
         int twoTails;
         int tailhead;
         int totalTosses;
         boolean correctTosses=false;
-        //int runsNum = runNum;
-
 
         //System.out.println("\nAfter run("+runsNum+")\n");
 
@@ -74,7 +83,6 @@ public class CoinTossSimulatorTester {
         System.out.print("\nTwo-tail tosses: "+twoTail);
 
         System.out.print("\nOne-head one-Tail tosses: "+headtail);
-        System.out.print("\ntwo head percent : "+ twoHeadPercent+"%");
 
         totalTosses = twoHead+twoTail+headtail;
         if(totalTosses == numoftrials) { correctTosses = true; }

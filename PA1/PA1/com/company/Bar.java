@@ -32,6 +32,8 @@ public class Bar {
    private String labelBar;
    private int appHeight;
    private double scaleUnits;
+   private final int BAR_WIDTH=100;
+   private final int LABEL_BUFF=15;
    /**
       Creates a labeled bar.  You give the height of the bar in application
       units (e.g., population of a particular state), and then a scale for how
@@ -76,8 +78,8 @@ public class Bar {
       Rectangle2D labelBounds = font.getStringBounds(labelBar,context);
       int labelWidth = (int)labelBounds.getWidth();
       int labelHeight = (int)labelBounds.getHeight();
-      int labelX =(int) bottomBar+50-(labelWidth/2);
-      int labelY = finalY+finalHeight+15;
+      int labelX =(int) bottomBar+(BAR_WIDTH/2)-(labelWidth/2);
+      int labelY = finalY+finalHeight+LABEL_BUFF;
       g2.drawString(labelBar,labelX,labelY);
 
    }
