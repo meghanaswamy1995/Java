@@ -16,7 +16,7 @@ public class PercentageTester {
                 count++;
             }
         }
-        System.out.printf("count:"+count);
+        System.out.printf("count: "+count);
 
     }
 }
