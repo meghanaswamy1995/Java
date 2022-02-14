@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch BookshelfKeeperProg",
+            "request": "launch",
+            "mainClass": "BookshelfKeeperProg",
+            "projectName": "startercode.0 4_528977db"
+        },
+        {
+            "type": "java",
+            "name": "Launch BookshelfTester",
+            "request": "launch",
+            "mainClass": "BookshelfTester",
+            "projectName": "startercode.0 4_528977db"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestAssert",
+            "request": "launch",
+            "mainClass": "TestAssert",
+            "projectName": "startercode.0 4_528977db"
+        },
+        {
+            "type": "java",
+            "name": "Launch myTest",
+            "request": "launch",
+            "mainClass": "myTest",
+            "projectName": "startercode.0 4_528977db"
+        }
+    ]
+}

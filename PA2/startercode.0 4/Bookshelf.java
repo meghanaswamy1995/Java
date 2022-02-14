@@ -1,9 +1,9 @@
-// Name: 
-// USC NetID: 
+// Name: Meghana Putta Swamy
+// USC NetID: mswamy
 // CSCI455 PA2
 // Spring 2022
 
-
+import java.util.ArrayList;
 /**
  * Class Bookshelf
  * Implements idea of arranging books into a bookshelf.
@@ -18,20 +18,22 @@ public class Bookshelf {
 
     /**
       Representation invariant:
+      myPileOfBooks contains the list of books in non-decresing order
+      myPileOfBooks should contains 0 or more positive integers
+      myPileOfBooks should always be in non-decresing order
+      Height of the books should always be greater than 0
 
-      <put rep. invar. comment here>
 
    */
    
-   // <add instance variables here>
-
+   private ArrayList<Integer> myPileOfBooks;
 
    /**
     * Creates an empty Bookshelf object i.e. with no books
     */
    public Bookshelf() {
-      
-      assert isValidBookshelf();  // sample assert statement (you will be adding more of these calls)
+      myPileOfBooks = new ArrayList<Integer>();
+      assert isValidBookshelf();  
    }
 
    /**
@@ -42,7 +44,9 @@ public class Bookshelf {
     * representing the height of each book.
     */
    public Bookshelf(ArrayList<Integer> pileOfBooks) {
- 
+      assert pileOfBooks.size()>=0;
+      myPileOfBooks = new ArrayList<Integer>(pileOfBooks);
+      assert isValidBookshelf(); 
    }
 
    /**
@@ -52,7 +56,9 @@ public class Bookshelf {
     * PRE: height > 0 (height of book is always positive)
     */
    public void addFront(int height) {
-      
+      assert height>0;
+      myPileOfBooks.add(0,height);
+      assert isValidBookshelf(); 
    }
 
    /**
@@ -61,6 +67,9 @@ public class Bookshelf {
     * PRE: height > 0 (height of book is always positive)
     */
    public void addLast(int height) {
+      assert height>0;
+      myPileOfBooks.add(myPileOfBooks.size(),height);
+      assert isValidBookshelf(); 
       
    }
 
@@ -71,9 +80,13 @@ public class Bookshelf {
     * PRE: this.size() > 0 i.e. can be called only on non-empty BookShelf
     */
    public int removeFront() {
-      
-      return 0;   // dummy code to get stub to compile
-      
+      assert myPileOfBooks.size()>0;
+      int removedBookHeight;
+      removedBookHeight=myPileOfBooks.get(0);
+      myPileOfBooks.remove(0);
+       
+      assert isValidBookshelf(); 
+      return removedBookHeight;  
    }
 
    /**
@@ -83,7 +96,13 @@ public class Bookshelf {
     * PRE: this.size() > 0 i.e. can be called only on non-empty BookShelf
     */
    public int removeLast() {
-      return 0;   // dummy code to get stub to compile      
+      int removedBookHeight;
+      assert myPileOfBooks.size()>0;
+      removedBookHeight=myPileOfBooks.get(myPileOfBooks.size()-1);
+      myPileOfBooks.remove(myPileOfBooks.size()-1);
+
+      assert isValidBookshelf(); 
+      return removedBookHeight;        
    }
 
    /*
@@ -93,7 +112,9 @@ public class Bookshelf {
     */
    public int getHeight(int position) {
       
-      return 0;   // dummy code to get stub to compile
+      assert position>=0 && position<myPileOfBooks.size();
+      assert isValidBookshelf(); 
+      return myPileOfBooks.get(position);   
       
    }
 
@@ -101,8 +122,8 @@ public class Bookshelf {
     * Returns number of books on the this Bookshelf.
     */
    public int size() {
-      
-      return 0;   // dummy code to get stub to compile
+      assert isValidBookshelf(); 
+      return myPileOfBooks.size();   
 
    }
 
@@ -112,9 +133,27 @@ public class Bookshelf {
     * by example here:  “[7, 33, 5, 4, 3]”
     */
    public String toString() {
-      
-      return "";   // dummy code to get stub to compile
-
+      return myPileOfBooks.toString();
+      /*
+      String stringVal="";
+      if(myPileOfBooks.size()>0){
+      stringVal+="["+myPileOfBooks.get(0);
+      for(int i =1;i<myPileOfBooks.size();i++){
+         if(i!=(myPileOfBooks.size()-1)){
+             stringVal+=", "+myPileOfBooks.get(i);
+             }
+             else {
+                 stringVal+=", "+myPileOfBooks.get(i);
+             }
+         }
+         stringVal+="]";
+         assert isValidBookshelf();  
+      return stringVal; 
+   }
+      else {
+         assert isValidBookshelf(); 
+         return "[]";}
+*/
    }
 
    /**
@@ -122,8 +161,12 @@ public class Bookshelf {
     * (Note: this is an accessor; it does not change the bookshelf.)
     */
    public boolean isSorted() {
-      
-      return false;  // dummy code to get stub to compile
+
+      for(int val=0;val<myPileOfBooks.size()-1;val++){
+         if(myPileOfBooks.get(val)<myPileOfBooks.get(val+1))continue;
+         else return false;
+      }
+      return true; 
    }
 
    /**
@@ -131,8 +174,17 @@ public class Bookshelf {
     * (See representation invariant comment for more details.)
     */
    private boolean isValidBookshelf() {
-      
-      return false;  // dummy code to get stub to compile
+      if(myPileOfBooks.size()<0) return false;
+      for(int i=0;i<myPileOfBooks.size();i++){
+         if(myPileOfBooks.get(i)<1) return false;
+      }
+
+      // for(int val=0;val<myPileOfBooks.size()-1;val++){
+      //    if(myPileOfBooks.get(val)<myPileOfBooks.get(val+1))continue;
+      //    else return false;
+      // }
+
+      return true;
 
    }
 
