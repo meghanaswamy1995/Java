@@ -21,12 +21,9 @@ public class Bookshelf {
       myPileOfBooks contains the list of books in non-decresing order
       myPileOfBooks should contains 0 or more positive integers
       myPileOfBooks should always be in non-decresing order
-      Height of the books should always be greater than 0
-
-
    */
    
-   private ArrayList<Integer> myPileOfBooks;
+   public ArrayList<Integer> myPileOfBooks;
 
    /**
     * Creates an empty Bookshelf object i.e. with no books
@@ -45,7 +42,7 @@ public class Bookshelf {
     */
    public Bookshelf(ArrayList<Integer> pileOfBooks) {
       assert pileOfBooks.size()>=0;
-      myPileOfBooks = new ArrayList<Integer>(pileOfBooks);
+      myPileOfBooks=pileOfBooks;
       assert isValidBookshelf(); 
    }
 
@@ -134,26 +131,6 @@ public class Bookshelf {
     */
    public String toString() {
       return myPileOfBooks.toString();
-      /*
-      String stringVal="";
-      if(myPileOfBooks.size()>0){
-      stringVal+="["+myPileOfBooks.get(0);
-      for(int i =1;i<myPileOfBooks.size();i++){
-         if(i!=(myPileOfBooks.size()-1)){
-             stringVal+=", "+myPileOfBooks.get(i);
-             }
-             else {
-                 stringVal+=", "+myPileOfBooks.get(i);
-             }
-         }
-         stringVal+="]";
-         assert isValidBookshelf();  
-      return stringVal; 
-   }
-      else {
-         assert isValidBookshelf(); 
-         return "[]";}
-*/
    }
 
    /**
@@ -163,7 +140,7 @@ public class Bookshelf {
    public boolean isSorted() {
 
       for(int val=0;val<myPileOfBooks.size()-1;val++){
-         if(myPileOfBooks.get(val)<myPileOfBooks.get(val+1))continue;
+         if(myPileOfBooks.get(val)<=myPileOfBooks.get(val+1))continue;
          else return false;
       }
       return true; 
@@ -178,12 +155,6 @@ public class Bookshelf {
       for(int i=0;i<myPileOfBooks.size();i++){
          if(myPileOfBooks.get(i)<1) return false;
       }
-
-      // for(int val=0;val<myPileOfBooks.size()-1;val++){
-      //    if(myPileOfBooks.get(val)<myPileOfBooks.get(val+1))continue;
-      //    else return false;
-      // }
-
       return true;
 
    }
