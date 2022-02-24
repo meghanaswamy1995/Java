@@ -18,9 +18,8 @@ public class Bookshelf {
 
     /**
       Representation invariant:
-      myPileOfBooks contains the list of books in non-decresing order
       myPileOfBooks should contains 0 or more positive integers
-      myPileOfBooks should always be in non-decresing order
+      myPileOfBooks size should be greater than zero
    */
    
    public ArrayList<Integer> myPileOfBooks;
@@ -42,8 +41,9 @@ public class Bookshelf {
     */
    public Bookshelf(ArrayList<Integer> pileOfBooks) {
       assert pileOfBooks.size()>=0;
-      myPileOfBooks=pileOfBooks;
-      assert isValidBookshelf(); 
+      myPileOfBooks= new ArrayList<Integer>(pileOfBooks);
+      //myPileOfBooks=pileOfBooks;
+      assert isValidBookshelf();
    }
 
    /**
@@ -93,8 +93,8 @@ public class Bookshelf {
     * PRE: this.size() > 0 i.e. can be called only on non-empty BookShelf
     */
    public int removeLast() {
-      int removedBookHeight;
       assert myPileOfBooks.size()>0;
+      int removedBookHeight;
       removedBookHeight=myPileOfBooks.get(myPileOfBooks.size()-1);
       myPileOfBooks.remove(myPileOfBooks.size()-1);
 
@@ -119,7 +119,7 @@ public class Bookshelf {
     * Returns number of books on the this Bookshelf.
     */
    public int size() {
-      assert isValidBookshelf(); 
+      assert isValidBookshelf();
       return myPileOfBooks.size();   
 
    }
@@ -130,6 +130,7 @@ public class Bookshelf {
     * by example here:  “[7, 33, 5, 4, 3]”
     */
    public String toString() {
+      assert isValidBookshelf();
       return myPileOfBooks.toString();
    }
 
@@ -140,9 +141,9 @@ public class Bookshelf {
    public boolean isSorted() {
 
       for(int val=0;val<myPileOfBooks.size()-1;val++){
-         if(myPileOfBooks.get(val)<=myPileOfBooks.get(val+1))continue;
-         else return false;
+         if( !(myPileOfBooks.get(val)<=myPileOfBooks.get(val+1))) { return false; }
       }
+      assert isValidBookshelf();
       return true; 
    }
 
@@ -150,10 +151,11 @@ public class Bookshelf {
     * Returns true iff the Bookshelf data is in a valid state.
     * (See representation invariant comment for more details.)
     */
-   private boolean isValidBookshelf() {
-      if(myPileOfBooks.size()<0) return false;
+   private boolean isValidBookshelf() { 
+      if(myPileOfBooks.size()<0) { return false; }
       for(int i=0;i<myPileOfBooks.size();i++){
-         if(myPileOfBooks.get(i)<1) return false;
+         if(myPileOfBooks.get(i)<1) { 
+            return false; }
       }
       return true;
 

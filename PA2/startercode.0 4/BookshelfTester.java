@@ -11,14 +11,14 @@ public class BookshelfTester {
         System.out.println("Bookshelf array string values with empty contructor (expected []): "+emptyShelf.toString());
 
         pileOfBooks = new ArrayList<Integer>();
-        pileOfBooks.add(5);
-        pileOfBooks.add(10);
+        pileOfBooks.add(15);
+        pileOfBooks.add(10); 
         pileOfBooks.add(13);
 
         Bookshelf newShelf = new Bookshelf(pileOfBooks);
 
         //Executing toString method 
-
+        System.out.println("Is array sorted? "+newShelf.isSorted()); 
         System.out.println("Bookshelf array string values (expected [5, 10, 13]): "+newShelf.toString());
 
         //Testing the size of ArrayList
