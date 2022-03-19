@@ -35,6 +35,9 @@ public class BookshelfKeeperProg {
                     }
                 }
             }
+            Bookshelf bsObj  = new Bookshelf(myBooksList);
+            BookshelfKeeper keeperObj = new BookshelfKeeper(bsObj);
+            System.out.println(keeperObj.toString()); 
 
             isValid = checkHeight(myBooksList,isValid); 
             if(isValid==false){
@@ -46,10 +49,10 @@ public class BookshelfKeeperProg {
                 break;
             }
 
-            Bookshelf bsObj  = new Bookshelf(myBooksList);
-            BookshelfKeeper keeperObj = new BookshelfKeeper(bsObj);
-            System.out.println(keeperObj.toString());
-
+            // Bookshelf bsObj  = new Bookshelf(myBooksList);
+            // BookshelfKeeper keeperObj = new BookshelfKeeper(bsObj);
+            // System.out.println(keeperObj.toString());
+ 
             System.out.println("Type pick <index> or put <height> followed by newline. Type end to exit.");
             isValid=getOperation(in,isValid,keeperObj); 
             if(isValid.equals(false)) { 

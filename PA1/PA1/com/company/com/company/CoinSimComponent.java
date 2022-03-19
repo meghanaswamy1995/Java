@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.swing.JComponent;
+
 import java.awt.*;
 
 /**

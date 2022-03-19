@@ -1,4 +1,5 @@
 package com.company;
+
 /**
  CoinTossSimulatorTester, the tester code to test the CoinTossSimulator class.
  */
@@ -20,7 +21,7 @@ public class CoinTossSimulatorTester {
             twoHeads = toss.getTwoHeads();
             twoTails = toss.getTwoTails();
             tailhead = toss.getHeadTails();
-            printTestOutput(numTrials,twoHeads,twoTails,tailhead,0);
+            printTestOutput(numTrials,twoHeads,twoTails,tailhead,0); 
 
          toss.run(1);
             System.out.println("\nAfter run(1): \n");

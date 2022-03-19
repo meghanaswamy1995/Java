@@ -20,7 +20,7 @@ public class CoinSimViewer {
         int numTrials = input.nextInt();
         while(numTrials<=0){
             System.out.println("ERROR: Number entered must be greater than 0");
-            System.out.print("Enter the number of trials: ");
+            System.out.print("Enter the number of trials: "); 
             numTrials = input.nextInt();
         }
     /*
