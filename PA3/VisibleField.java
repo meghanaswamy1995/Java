@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
-// Name:
-// USC NetID:
+// Name: Meghana Putta Swamy
+// USC NetID: mswamy
 // CS 455 PA3
 // Spring 2022
 
