@@ -98,7 +98,7 @@ class GameBoardPanel extends JPanel {
      @param visibleField  the VisibleField that this GUI reflects
    */
    public GameBoardPanel(VisibleField visibleField) { 
-      
+     
       this.visibleField = visibleField;     
       this.isRandomMineField = false;
       
@@ -151,10 +151,12 @@ class GameBoardPanel extends JPanel {
       for (int row = 0; row < mySquares.length; row++) {
          for (int col = 0; col < mySquares[0].length; col++) {
             mySquares[row][col] = addSquare(row, col, board);
+       
          }
       }
       
       add(board, BorderLayout.CENTER);
+   
    }
    
    
@@ -191,6 +193,7 @@ class GameBoardPanel extends JPanel {
             visibleField.resetGameDisplay();
             userChoseFirstLocation = false;
             updateAllSquaresViews();
+           
             mineGuessLabel.setText(Integer.toString(visibleField.getMineField().numMines()));
             newGameButton.setIcon(happyIcon);
             gameStatusLabel.setText("");
@@ -224,7 +227,7 @@ class GameBoardPanel extends JPanel {
       if (imgURL != null) {
          return new ImageIcon(imgURL, path);
       } else {
-         System.err.println("Couldn't find file: " + path);
+         System.err.println("Couldn't find file: " + path); 
          return null;
       }
    }
@@ -252,6 +255,7 @@ class GameBoardPanel extends JPanel {
    private SquareView addSquare(int row, int col, JPanel board) {       
       SquareView square = new SquareView(row, col);
       board.add(square); 
+      
       return square; 
    }
    
@@ -265,6 +269,7 @@ class GameBoardPanel extends JPanel {
       
       public SquareListener(SquareView mySquare) {
          this.mySquare = mySquare;
+        
       }
       
       /**
@@ -301,11 +306,13 @@ class GameBoardPanel extends JPanel {
          //                                              (they were set in the constructor)
          if (!userChoseFirstLocation && isRandomMineField) {  // first time uncovering a square
             userChoseFirstLocation = true;
+           
             // doesn't put a mine in the location they chose
             visibleField.getMineField().populateMineField(
                                           mySquare.getRow(), mySquare.getCol());
          }
-         
+
+       
          // recursively opens up empty areas
          boolean isNotAMine = visibleField.uncover(mySquare.getRow(), mySquare.getCol());
 

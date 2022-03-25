@@ -17,7 +17,7 @@ public class MineSweeper {
    private static final int FRAME_WIDTH = 400;
    private static final int FRAME_HEIGHT = 425;
    
-   private static int SIDE_LENGTH = 9;
+   private static int SIDE_LENGTH = 9; 
    private static int NUM_MINES = 10;
    
 

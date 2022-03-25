@@ -18,8 +18,9 @@ public class MineField {
    
    // <put instance variables here>
    private boolean[][] mines;
-   private Random randomGen=new Random();
-   private int numOfMines;
+   private Random randomGen=new Random(); 
+   private int numOfMines=0;
+   private boolean isRandomMineField;
    
    
    
@@ -30,11 +31,20 @@ public class MineField {
       @param mineData  the data for the mines; must have at least one row and one col,
                        and must be rectangular (i.e., every row is the same length)
     */
-   public MineField(boolean[][] mineData) {
-      mines=mineData;
-      //numOfMines=((mineData.length)*mineData[0].length)/3;
-      numOfMines=12;
-      
+   public MineField(boolean[][] mineData) { 
+
+      mines=new boolean[mineData.length][mineData[0].length];
+         if(mineData !=null){
+            for (int i = 0; i < mineData.length; i++) {
+               for(int j=0;j<mineData[0].length;j++){
+                  if(mineData[i][j]==true){
+                     numOfMines++;
+                  }
+                  mines[i][j] = mineData[i][j]; 
+               }
+            }
+         }
+      isRandomMineField=false; 
    }
    
    
@@ -51,10 +61,15 @@ public class MineField {
       assert numRows > 0 && numCols > 0;
       int limit = numRows * numCols; 
       assert numMines < limit / 3.0;
-      
-      mines= new boolean[numRows][numCols];
-      numOfMines = numMines; 
-      
+
+      //if(numRows == numCols){
+         mines= new boolean[numRows][numCols];
+         numOfMines = numMines; 
+      // }
+      // else{
+      //    return;
+      // }
+      isRandomMineField=true;
    }
    
 
@@ -66,22 +81,26 @@ public class MineField {
       PRE: inRange(row, col) and numMines() < (1/3 * numRows() * numCols())
     */
    public void populateMineField(int row, int col) {
-      resetEmpty();
-
-      for(int idx=0;idx<numOfMines;idx++){
-         int rw= randomGen.nextInt(0,9);
-         int cl = randomGen.nextInt(0,9);
-         while(rw==row && cl==col){
-             rw= randomGen.nextInt(0,9);
-             cl = randomGen.nextInt(0,9);
-         } 
-         if(rw!=row && cl!=col){
-            if(mines[rw][cl]!=true){ 
-               mines[rw][cl]=true; 
-            }
+      assert inRange(row, col);
+      int limit = numRows() * numCols(); 
+      assert numMines() < limit / 3.0;
+      
+      if(isRandomMineField){
+         resetEmpty();
+         for(int idx=0;idx<numOfMines;idx++){
+            int newRw= randomGen.nextInt(numRows());
+            int newCl = randomGen.nextInt(numCols());
+            while((newRw==row && newCl==col)|| (mines[newRw][newCl]==true)){
+               newRw= randomGen.nextInt(numRows());
+               newCl = randomGen.nextInt(numCols());
+            } 
+            mines[newRw][newCl]=true; 
          }
       }
- 
+      else{
+         return;
+      }
+
    }
    
    
@@ -115,17 +134,17 @@ public class MineField {
       int[][] eightAdjSqrs = {{-1,-1}, {-1,0}, {-1,1},
       {0,-1}, {0,1},
       {1,-1}, {1,0}, {1,1}}; 
-      if(row==0||row==mines.length-1||col==0||col==mines[0].length-1){
-         adjMineCount= checkBounds(row, col, mines); 
-      }
-     else{
-          for(int i=0;i<eightAdjSqrs.length;i++){
-              if(mines[row+eightAdjSqrs[i][0]][col+eightAdjSqrs[i][1]] == true){
-                  adjMineCount++;
-              }
-          }
-      }
-   }
+         for(int i=0;i<eightAdjSqrs.length;i++){ 
+               int newRow=row+eightAdjSqrs[i][0];
+               int newCol = col+eightAdjSqrs[i][1];
+               if(newRow<0 || newCol<0|| newRow>=numRows()|| newCol>= numCols()){
+                  continue;
+               }
+               else if(mines[newRow][newCol] == true){
+                     adjMineCount++;
+               }
+            }
+         }
       return adjMineCount; 
    }
    
@@ -138,10 +157,10 @@ public class MineField {
       @return whether (row, col) is a valid field location
    */
    public boolean inRange(int row, int col) {
-      if(row<numRows() && col<numCols()){
-         return true;
+      if(row<0 || col<0|| row>=numRows() || col>=numCols()){
+         return false;
       }
-      return false;
+         return true; 
    }
    
    
@@ -190,88 +209,5 @@ public class MineField {
    public int numMines() {
       return numOfMines; 
    }
-
-   
-   // <put private methods here>
-   private static int checkBounds(int row, int col, boolean[][] mines){
-        int adjMineCount=0;
-        int[][] zeroRowZeroCol={
-            {1,0},{0,1},{1,1}
-        };
-        int[][] zeroRowNthCol={
-            {1,0},{0,-1},{1,-1}
-        };
-        int[][] nthRowZeroCol={
-            {-1,0},{0,1},{-1,1}
-        };
-        int[][] nthRowNthCol={
-            {-1,0},{0,-1},{-1,-1}
-        };
-        int[][] zeroRowMiddleCol={
-            {1,0},{0,-1},{0,1},{1,-1},{1,1}
-        };
-        int[][] nthRowMiddleCol={
-            {-1,0},{0,-1},{-1,-1},{-1,1},{0,1}
-        };
-        int[][] zeroCol ={
-            {-1,0},{1,0},{1,1},{0,1},{-1,1}
-        };
-        int[][] nthCol ={
-            {-1,0},{1,0},{1,-1},{0,-1},{-1,-1}
-        };
-        if(row==0){
-            adjMineCount=rowBoundCheck(row,col,zeroRowZeroCol,zeroRowNthCol,zeroRowMiddleCol,mines);
-         }
-         else if(row==mines.length-1){
-             adjMineCount=rowBoundCheck(row, col, nthRowZeroCol, nthRowNthCol, nthRowMiddleCol, mines);
-
-         }
-         if(col==0 && row!=0 && row!=mines.length-1){
-            adjMineCount=colBoundCheck(row,col,zeroCol,mines);
-         }
-         else if(col==mines[0].length-1 && row!=0 && row!=mines.length-1){
-            adjMineCount=colBoundCheck(row,col,nthCol,mines);
-         }
-         return adjMineCount;
-
-    }
-
-    private static int rowBoundCheck(int row, int col, int[][] zeroCol, int[][] nthCol, int[][] middleCol,boolean[][] mines){
-      int adjMineCount=0;
-      if(col==0){
-          for(int i=0;i<zeroCol.length;i++){
-              if(mines[row+zeroCol[i][0]][col+zeroCol[i][1]] == true){
-                  adjMineCount++;
-              }
-          }
-      }
-      else if(col==mines[0].length-1){
-          for(int i=0;i<nthCol.length;i++){
-              if(mines[row+nthCol[i][0]][col+nthCol[i][1]] == true){
-                  adjMineCount++;
-              }
-          }  
-      }
-      else{
-          for(int i=0;i<middleCol.length;i++){
-              if(mines[row+middleCol[i][0]][col+middleCol[i][1]] == true){
-                  adjMineCount++;
-              }
-          } 
-      }
-      return adjMineCount; 
-  }
-
-  private static int colBoundCheck(int row, int col, int[][] colArr, boolean[][] mines){
-      int adjMineCount=0;
-      for(int i=0;i<colArr.length;i++){
-          if(mines[row+colArr[i][0]][col+colArr[i][1]] == true){
-              adjMineCount++;
-          }
-      }
-      return adjMineCount;
-  } 
-
          
-}
-
+} 
