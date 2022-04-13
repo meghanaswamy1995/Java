@@ -48,7 +48,7 @@ public class BookshelfKeeper {
     *
     * PRE: sortedBookshelf.isSorted() is true.
     */
-   public BookshelfKeeper(Bookshelf sortedBookshelf) { 
+   public BookshelfKeeper(Bookshelf sortedBookshelf) {
       assert sortedBookshelf.isSorted() == true;
 
       this.sortedBookshelf=sortedBookshelf;

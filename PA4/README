@@ -1,0 +1,57 @@
+# Name: Meghana Putta Swamy
+# USC NetID: mswamy
+# CS 455 PA4
+# Spring 2022
+
+# ----------------------------------------------
+# CERTIFY IT'S YOUR WORK
+
+# "I certify that the work submitted for this assignment does not
+# violate USC's student conduct code.  In particular, the work is my
+# own, not a collaboration, and does not involve code created by other
+# people, except for the the resources explicitly mentioned in the CS 455
+# Course Syllabus.  And I did not share my solution or parts of it with
+# other students in the course."
+
+# Initial below to "sign" the above statement:
+
+# Meghana Putta Swamy
+# ----------------------------------------------
+# ACKNOWLEDGE ANY OUTSIDE SOURCES
+
+# List here any code you submitted for this assignment that was written
+# with significant help of a course staff member, or code used from the
+# textbook.  Be specific about what methods or algorithms are involved,
+# and what sections of the textbook are involved (if applicable): [you do
+# not need to list any of the code that we wrote for the assignment,
+# i.e., the contents of the starter files for the assignment]
+
+
+
+# ----------------------------------------------
+# KNOWN BUGS or LIMITATIONS:
+# None
+
+
+# ----------------------------------------------
+# DESCRIPTION OF YOUR CLASS DESIGN AND ALGORITHMS AND DATA STRUCTURES USED:
+# 1. The WordFinder class is the main class. This class takes in the input from the user. 
+#    It has a main loop which loops asking for input from the user untill '.' is  given to quit the program.
+#    The main method create Anagram dictionary object using the fileName of the dictionary. 
+#    The AnagramDictionary constructor pre-precesses the dictionary and stores it in a Map<String,ArrayList<String>>.
+#    Map is stored in such a way that key will be "abc_111" and the value contains all the dictionary words that has same elements and same multiplicity count.
+# 2. The WordFinder(after taking the input) and AnagramDictionary methods(while processing dictionary words) calls StringPrcessing class, 
+#    the class specifically designed to process string to find the unique characters and multiplicity count.
+#    It uses TreeMap<String,Integer> to store each character of the word in an ascending order and the corresponding values will be the multiplicity count.
+#    It then forms the uniqueLetter string from all the keys of the map and all values go into the multiplicity array .
+# 3. Once the unique count and multiplicity count is obtained, the WordFinder calls to create substring using the Rack class which gives the subsets of the given rack.
+# 4. After getting the subsets, WordFinder gets all the words corresponding to the subset from the preprocessed dictionay Map using AnagramDictionary object
+#    for each word from the dictionary it calculates the score using ScoreTable class object, 
+#    this class stores pre assigned scores for each character from a-z andA-Z   and calculates the score of a word.
+# 5. WordFinder then adds each element from the list to the FinalMap<String,Integer> with key as the word and the score as its value.
+# 6. Using the Inner class ScoreComparator Wordfinder is sorting the elements of the map in the descending order and finally printing it out.
+# 
+# Datastructures used:
+# Array, ArrayList, HashMap, TreeMap
+# ----------------------------------------------
+# ANY OTHER NOTES FOR THE GRADER:

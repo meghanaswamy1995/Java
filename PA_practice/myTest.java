@@ -6,9 +6,11 @@ import java.util.Arrays;
 public class myTest {
         public static void main(String[] args){
            
-            int[] value = {2,1,-5,-3,4}; 
-            System.out.println("test");
-            System.out.println(removeNegatives(value,5));
+            int[] arr = new int[26];
+            System.out.println(arr[0]);
+            // int[] value = {2,1,-5,-3,4}; 
+            // System.out.println("test");
+            // System.out.println(removeNegatives(value,5));
 
 
             // while (in.hasNext())
