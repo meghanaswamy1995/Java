@@ -19,7 +19,7 @@ import java.util.TreeMap;
  * It can also be run in a batch mode by using input and output redirection.
  */ 
 public class WordFinder {  
-    public static void main(String[] args){ 
+    public static void main(String[] args){  
         
         String fileName=""; 
         boolean doneProcessing=false; 

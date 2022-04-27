@@ -36,10 +36,11 @@ public class Rack {
     * @return ArrayList<String> which contains all the subsets possible for a given rack.
     */
    public ArrayList<String> createSubStrings(String unique, int[] mult, int k ){
-
+      assert mult.length==unique.length();
+      assert k<=unique.length() && k>=0; 
       listOfSubsets=allSubsets(unique, mult, k);
       return listOfSubsets;
-   }
+   } 
 
    /**
     * Accessor for getting the list of subets formed by allSubsets()

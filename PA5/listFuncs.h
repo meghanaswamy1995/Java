@@ -12,7 +12,7 @@
 // The table class calls this class' methods to add/remove/lookup an entry from the list 
 
 #ifndef LIST_FUNCS_H
-#define LIST_FUNCS_H
+#define LIST_FUNCS_H 
 
 #include <string>
   
